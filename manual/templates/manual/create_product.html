@@ -1,0 +1,17 @@
+{% extends "man/main.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<title>Создание товара/услуги</title>
+<div class="" align="center">
+    <form method="post">
+      {% csrf_token %}
+      <p>Наименование товара/услуги {{form.name}}</p>
+      <p>Тип{{form.type}}</p>
+      <p>Количество{{form.quantity}}</p>
+      <p>Единицы измерения{{form.unit}}</p>
+      <input id="save_but" type="submit" value="Сохранить"></input>
+    </form>
+</div>
+{% endblock content %}

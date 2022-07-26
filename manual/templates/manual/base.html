@@ -1,0 +1,19 @@
+{% load static %}
+<html>
+<head>
+	<title>{{title}}</title>
+	<link type="text/css" href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+{% block mainmenu %}
+<ul>
+	{% for m in menu %}
+<li>{{m}}</li>
+	{% endfor %}
+</ul>
+{% endblock mainmenu %}
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

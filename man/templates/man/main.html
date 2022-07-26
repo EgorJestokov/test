@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
+{% load static %}
+     <link rel="stylesheet" type="text/css" href="{% static 'css/pop-up window.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<title>{{ title }}</title>
+</head>
+<body>
+<div>
+    <div  style="padding: margin:auto;">
+    <input type="checkbox" id="drawer-toggle" name="drawer-toggle"/>
+   <label for="drawer-toggle" id="drawer-toggle-label"></label>
+   <header>
+       <a href="/" style="color:white">Бюджетирование</a>
+   <div style="float: right; color:white; ">
+      {% if request.user.is_authenticated %}
+      Здравствуйте, {{request.user}}!
+      <a href="{% url 'logout' %}" style="color:white" class="btn btn-outline-secondary">Выйти</a>
+      {% else %}
+      <a style="color:white" class="btn btn-outline-secondary"  href="{% url 'login' %}" role="button">Войти</a>
+      {% endif %}
+      <a href="{% url 'home' %}"></a>
+    </div>
+      <div style="float: right">
+          <select onchange="window.location.href = this.options[this.selectedIndex].value">
+            <option selected="selected">Выберите Кейс</option>
+            <option value="/">1</option>
+            <option value="/">2</option>
+            <option value="/">3</option>
+            <option value="/">4</option>
+          </select>
+          <select onchange="window.location.href = this.options[this.selectedIndex].value">
+            <option selected="selected">Выберите Компанию</option>
+            <option value="/">1</option>
+            <option value="/">2</option>
+            <option value="/">3</option>
+            <option value="/">4</option>
+          </select>
+    </div>
+   </header>
+
+   <div id="drawer">
+      <ul>
+          <li><H4><a href="/manual">Справочник</a></H4>
+            <ul>
+                <li><a href=/product_manual>Справочник видов товаров и услуг:</a></li>
+                <li><a href=/price_manual>Справочник цен</a></li>
+                <li><a href=/sale_manual>Справочник объемов продаж</a></li>
+            </ul>
+        </li>
+      </ul>
+       <br>
+       <ul>
+        <li><H4><a href="/reports">Отчеты</a></H4>
+            <ul>
+                <li><a href=/report>отчет1</a></li>
+            </ul>
+        </li>
+      </ul>
+       <div>
+            <a href="/create_manual">
+             <button class="btn btn-light" style="width: 49%">Создать Справочник</button>
+           </a>
+           <a href="">
+            <button class="btn btn-light" style="width: 49%">Создать Отчет</button>
+           </a>
+       </div>
+   </div>
+    </div>
+  </div>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

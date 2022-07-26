@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<div align="center" style="padding: 25px 0 1px 0;">
+  <div align="center" style="margin-left: -370px">
+    <!-- <a href="{% url 'home' %}">
+      <input type="submit" value="На главную">
+    </a> -->
+  </div>
+  <div class="container text-center " style="width: 500px; margin:auto;">
+    <div class="cont">
+      <h1>Регистрация</h1>
+      <form action="" method="POST">
+
+        {% csrf_token %}
+
+        <label>Введите почту:</label>
+        <br>
+        {{ form.email }}
+        <br>
+        <label>Логин:</label>
+        <br>
+        {{ form.username }}
+        <br>
+        <label>Пароль:</label>
+        <br>
+        {{ form.password1 }}
+        <br>
+        <br>
+        <style>
+          ul {
+            /* list-style-type: none; */
+            color: whitesmoke; /* Цвет текста */
+            background: #004393	; /* Цвет фона */
+            padding: 0; /* Поля вокруг текста */
+            margin-left: 40; /* Отступ слева */
+            font-size: 15px;
+          }
+        </style>
+        <div align="left">
+          <ul>
+            <li>Ваш пароль не должен включать в себя настоящую информацию о вас</li>
+            <li>Ваш пароль не должен содержать меньше 8 символов</li>
+            <li>Ваш пароль не должен быть простым</li>
+            <li>Ваш пароль не должен состоять только из цифр</li>
+            <li>Ваш пароль должен включать в себя хотя бы одну заглавную букву</li>
+          </ul>
+          </div>
+        <label>Подтвердите пароль:</label>
+        <br>
+        {{ form.password2 }}
+        <br>
+        <br>
+        <input type="submit" value="Зарегистрироваться"/>
+        <br>
+      </form>
+      Уже есть аккаунт? 
+      <a href="{% url 'login' %}" class="text-white">Войти</a>
+    </div>
+  </div>
+</div>

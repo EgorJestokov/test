@@ -1,0 +1,101 @@
+{% extends "man/main.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<title>Создание цены</title>
+<div style="margin-left: 10px;">
+  <a href="{% url 'create-price' %}">
+    <input type="button" value="Создать цену">
+  </a>
+</div>
+<br>
+
+<div>
+  {% for p in items %}
+  <hr>
+    <ul class="row price-list">
+      <li id="name" class="col-4"></li>
+      <li id="type-quantity" class="col-4" >
+        <p>{{p.type}}</p>
+        <p>{{p.price_with_nds }}</p>
+      </li>
+        <li id="buttons" class="col-4">
+        <div>
+          <a href="{% url 'edit-price' p.id %}">
+            <button class="btn btn-info" style="width: 15%; border: 10px; border-radius: 40px 40px 40px 40px;">Изменить</button>
+          </a>
+        </div>
+          <br>
+        <div style="margin-top: -10px;">
+          <a href="{% url 'delete-price' p.id %}">
+            <button class="btn btn-danger" style="width: 15%; border: 10px; border-radius: 40px 40px 40px 40px;">Удалить</button>
+          </a>
+        </div>
+        </li>
+      <hr>
+    </ul>
+  <style>
+      .product-list{
+             list-style: none;
+      }
+      .product-list li{
+           text-align: center;
+      }
+  </style>
+  {% endfor %}
+</div>
+
+
+
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+  {% if items.has_previous %}
+      <li class="page-item">
+      <a class="page-link" href="?page={{ items.previous_page_number }}">Предыдущая</a>
+    </li>
+  {% else %}
+      <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Предыдущая</a>
+    </li>
+  {% endif %}
+
+  {% if items.number|add:'-4' > 1 %}
+      <li class="page-item"><a class="page-link" href="?page={{ items.number|add:'-5' }}">&hellip;</a></li>
+  {% endif %}
+
+  {% for i in items.paginator.page_range %}
+      {% if items.number == i %}
+          <li class="page-item active" aria-current="page">
+        <span class="page-link">
+          {{ i }}
+          <span class="sr-only">(current)</span>
+        </span>
+      </li>
+      {% elif i > items.number|add:'-5' and i < items.number|add:'5' %}
+           <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+  {% endfor %}
+
+  {% if items.paginator.num_pages > items.number|add:'4' %}
+     <li class="page-item">
+      <a class="page-link" href="?page={{ items.number|add:'5' }}">&hellip;</a>
+    </li>
+  {% endif %}
+
+  {% if items.has_next %}
+      <li class="page-item">
+      <a class="page-link" href="?page={{ items.next_page_number }}">Следующая</a>
+
+    </li>
+  {% else %}
+      <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Следующая</a>
+      </li>
+  {% endif %}
+  </ul>
+</nav>
+
+{% endblock %}

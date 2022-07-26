@@ -1,0 +1,22 @@
+{% extends "man/main.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="create-prod" align="center">
+      <h1>Создать цену</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <p>Тип {{form.type}}</p>
+        <p>Дата {{form.date}}</p>
+        <p>Тип временного периода {{form.period_type}}</p>
+        <p>Начало временного периода {{form.period_start}}</p>
+        <p>Конец временного периода {{form.period_end}}</p>
+        <p>Цена без НДС{{form.price_non_nds}}</p>
+        <p>Тип НДС {{form.NDS_type}}</p>
+        <p>НДС {{form.NDS}}</p>
+        <p>Цена с НДС {{form.price_with_nds}}</p>
+        <input type="submit" name="" value="Сохранить">
+    </form>
+</div>
+{% endblock content %}

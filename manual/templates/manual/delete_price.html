@@ -1,0 +1,19 @@
+{% extends "man/main.html" %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align="center" class="container text-center">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p>Вы уверены что вы хотите удалить запись "{{obj}}"?</p>
+        <input type="submit" class="btn btn-danger" value="Подтвердить"/>
+        <a href="{{request.META.HTTP_REFERER}}">
+            <input type="button" class="btn btn-primary" value="Назад"/>
+        </a>
+    </form>
+</div>
+{% endblock content%}
