@@ -25,3 +25,6 @@ class formSales(ModelForm):
 #     class Meta:
 #         model = CreateManual
 #         fields = '__all__'
+
+class ModelTest(ModelForm):
+    pass
